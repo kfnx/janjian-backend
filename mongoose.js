@@ -1,5 +1,7 @@
+const dotenv = require('dotenv');
+dotenv.config();
 var mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://kfsl_admin:kfsl_admin2019@balabala-maeov.mongodb.net/test?retryWrites=true', {useNewUrlParser: true});
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@balabala-maeov.mongodb.net/test?retryWrites=true`, {useNewUrlParser: true});
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -28,10 +30,11 @@ var koceng = new Kitten({ name: 'Apin si Kocenk' });
 
 koceng.save(function (err, koceng) {
     if (err) { return console.error(err)}
-    else { return console.log('saved')}
-    koceng.speak();
-
-  });
+    else { 
+        koceng.speak();
+        return console.log('saved')
+    }
+});
 
 Kitten.find({ name: /^.*/ }, function (res) {
     return console.log('find>'+res);
