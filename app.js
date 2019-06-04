@@ -4,7 +4,7 @@ const express = require('express')
 const mongoose = require('mongoose');
 const app = express()
 
-const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@balabala-maeov.mongodb.net/test?retryWrites=true`;
+const url = `${process.env.MONGODB_URI}?ssl=true&retryWrites=true`;
 const apiroutes = require('./routes/api_route.js');
 
 app.use(express.json()) //sets content-type to json
