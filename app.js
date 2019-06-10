@@ -12,6 +12,12 @@ app.use(express.json()) //sets content-type to json
 //     res.send('wellcome hellow')
 // }); //using routes specified externally
 app.use('/test', apiroutes); //using routes specified externally
+app.get('/api', (req, res) => {
+  res.status(200).json({api: 'version 1'})
+})
+app.get('/', (req, res) => {
+  res.status(200).json({api: 'version 1'})
+})
 
 
 mongoose.connect(url,{useNewUrlParser: true})
